@@ -11,7 +11,6 @@ jobs:
     strategy:
       matrix:
         python-version: [
-          "2.7",
           "3.5",
           "3.6",
           "3.7",
@@ -19,20 +18,15 @@ jobs:
           "3.9",
           "3.10",
           "3.11",
-          "pypy-2.7",
           "pypy-3.8",
         ]
         os: [ubuntu-latest, windows-latest, macos-latest]
         exclude:
-          - python-version: "2.7"
-            os: "ubuntu-latest"
           - python-version: "3.5"
             os: "ubuntu-latest"
           - python-version: "3.6"
             os: "ubuntu-latest"
         include:
-          - python-version: "2.7"
-            os: "ubuntu-20.04"
           - python-version: "3.5"
             os: "ubuntu-20.04"
           - python-version: "3.6"
@@ -43,7 +37,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
@@ -109,7 +103,7 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v4
-      - uses: akaihola/darker@1.5.1
+      - uses: akaihola/darker@1.6.1
         with:
           options: "--check --diff --color --isort"
           src: "."
@@ -120,7 +114,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
           python-version: "3.10"
       - name: Install tox

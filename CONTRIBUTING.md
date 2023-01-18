@@ -93,16 +93,16 @@ pip install -r requirements-dev.txt
 
 ## Testing
 
-The best way to test `dateutil` is to run `tox`. By default, `tox` will test against all supported versions of Python installed on your system. To limit the number of tests, run a specific subset of environments. For example, to run only on Python 2.7 and Python 3.6:
+The best way to test `dateutil` is to run `tox`. By default, `tox` will test against all supported versions of Python installed on your system. To limit the number of tests, run a specific subset of environments. For example, to run only on Python 3.10 and Python 3.11:
 
 ```bash
-tox -e py27,py36
+tox -e py310,py311
 ```
 
 You can also pass arguments to `pytest` through `tox` by placing them after `--`:
 
 ```bash
-tox -e py36 -- -m tzstr
+tox -e py311 -- -m tzstr
 ```
 
 This will pass the `-m tzstr` parameter to `pytest`, running only the tests with the `tzstr` mark.
