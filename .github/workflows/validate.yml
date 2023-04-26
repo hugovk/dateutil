@@ -40,6 +40,7 @@ jobs:
           - python-version: "3.6"
             os: "ubuntu-20.04"
     runs-on: ${{ matrix.os }}
+    fail-fast: false
     env:
       TOXENV: py
     steps:
