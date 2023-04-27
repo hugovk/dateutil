@@ -96,12 +96,11 @@ jobs:
         with:
           fetch-depth: 0
       - uses: actions/setup-python@v4
-      - uses: akaihola/darker@1.7.1
+      - uses: akaihola/darker@1.7.0
         with:
           options: "--check --diff --color --isort"
           src: "."
-          version: "1.7.1"
-          revision: "master"
+          version: "1.7.0"
 
   build-dist:
     runs-on: ubuntu-latest
