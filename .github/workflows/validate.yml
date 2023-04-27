@@ -101,6 +101,7 @@ jobs:
           options: "--check --diff --color --isort"
           src: "."
           version: "1.7.1"
+          revision: "master"
 
   build-dist:
     runs-on: ubuntu-latest
