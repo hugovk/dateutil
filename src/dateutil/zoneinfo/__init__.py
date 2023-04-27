@@ -191,9 +191,7 @@ def gettz(name):
 
 
 def gettz_db_metadata():
-    """ Get the zonefile metadata
-
-    See `zonefile_metadata`_
+    """Get the zonefile metadata
 
     :returns:
         A dictionary with the database metadata
