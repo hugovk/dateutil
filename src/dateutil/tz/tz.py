@@ -41,7 +41,7 @@ except ImportError:
 from warnings import warn
 
 ZERO = datetime.timedelta(0)
-EPOCH = datetime.datetime.utcfromtimestamp(0)
+EPOCH = datetime.datetime.fromtimestamp(0, datetime.timezone.utc)
 
 
 @six.add_metaclass(_TzSingleton)
@@ -1333,7 +1333,9 @@ def _datetime_to_timestamp(dt):
     Convert a :class:`datetime.datetime` object to an epoch timestamp in
     seconds since January 1, 1970, ignoring the time zone.
     """
-    return (dt.replace(tzinfo=None) - EPOCH).total_seconds()
+    return (
+        dt.replace(tzinfo=None) - EPOCH.replace(tzinfo=None)
+    ).total_seconds()
 
 
 if sys.version_info >= (3, 6):
