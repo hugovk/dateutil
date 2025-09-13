@@ -23,6 +23,7 @@ jobs:
           "3.11",
           "3.12",
           "3.13",
+          "3.14",
           "pypy-2.7",
           "pypy-3.8",
         ]
@@ -61,10 +62,10 @@ jobs:
       TOXENV: py
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - if: ${{ !matrix.use-container }}
         name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }} (non-containers)
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
           allow-prereleases: true
@@ -90,7 +91,7 @@ jobs:
       - name: Generate coverage.xml
         run: python -m tox -e coverage
       - name: Report coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           file: ./.tox/coverage.xml
           name: ${{ matrix.os }}:${{ matrix.python-version }}
@@ -108,11 +109,11 @@ jobs:
       TOXENV: ${{ matrix.toxenv }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - name: ${{ matrix.toxenv }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.10"
       - name: Install tox
@@ -125,10 +126,10 @@ jobs:
   darker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
       - uses: akaihola/darker@0fb2501a3f6c1b2d64976afa57885aeec0601182
         # pinned due to unreleased fix: https://github.com/akaihola/darker/issues/489
         with:
@@ -139,9 +140,9 @@ jobs:
   build-dist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.10"
       - name: Install tox
